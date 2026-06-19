@@ -9,14 +9,13 @@ public class Patron {
     private String name;
     private String address;
     private double overdueFine;
-    //Constructor
+
     public Patron(String patronId, String name, String address, double overdueFine){
         this.patronId = patronId;
         this.name = name;
         this.address = address;
         this.overdueFine = overdueFine;
     }
-    //Get Methods
     public String getPatronId(){
         return patronId;
     }
@@ -29,7 +28,6 @@ public class Patron {
     public double getOverdueFine(){
         return overdueFine;
     }
-    //Set Methods
     public void setName(String name){
         this.name = name;
     }

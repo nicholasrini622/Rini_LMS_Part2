@@ -1,9 +1,21 @@
+//Nicholas Rini
+//CEN3024 - Software Development 1
+//06/19/2026
+//FileImport.java
+//Class responsible for importing Patron records from text file. This class will read line by line separating information
+//Creates Patron from a valid line and sends to LibraryManagementHelper.
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class FileImport {
-    //Methods
+    /*
+    * Method: importPatron
+    * Parameters: String filePath, LibraryManagementHelper helper
+    * Return: int
+    * Purpose: Read each line of text file and import validated patron records to LibraryManagementHelper.
+    * Return number of patrons imported.
+     */
     public int importPatron(String filePath, LibraryManagementHelper helper) {
         int count = 0;
         try {
@@ -22,7 +34,13 @@ public class FileImport {
         }
         return count;
     }
-
+    /*
+    * Method: parsePatronLine
+    * Parameters: String line
+    * Return: Patron
+    * Purpose: Separates line of text by patron ID, name, address, and overdue fine amount using "-" regex.
+    * Validated lines will return a Patron object, invalid lines return null.
+     */
     public Patron parsePatronLine(String line) {
         String[] patronComponent = line.split("-");
         if (patronComponent.length != 4) {

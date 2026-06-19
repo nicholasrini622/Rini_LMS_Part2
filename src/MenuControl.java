@@ -1,3 +1,9 @@
+//Nicholas Rini
+//CEN3024 - Software Development 1
+//06/19/2026
+//MenuControl.java
+//This class will control the LMS menu.  Display menu options, take user input, and control method calls for
+//importing, adding, removing, and displaying current patrons.
 import java.util.Scanner;
 
 public class MenuControl {
@@ -9,6 +15,12 @@ public class MenuControl {
         this.fileImport = new FileImport();
         this.scanner = new Scanner(System.in);
     }
+    /*
+    * Method: start
+    * Parameters: none
+    * Return: void
+    * Purpose: Main loop that runs until user exits the program.
+     */
     public void start(){
         int choice = 0;
         while(choice != 5){
@@ -22,6 +34,12 @@ public class MenuControl {
             }
         }
     }
+    /*
+    * Method: displayMenu
+    * Parameters: none
+    * Return: void
+    * Purpose: Display all possible menu options.
+     */
     public void displayMenu(){
         System.out.println("\n***Library Management System***");
         System.out.println("1. Import from file");
@@ -31,6 +49,13 @@ public class MenuControl {
         System.out.println("5. Exit program");
         System.out.println("How would you like to proceed?");
     }
+    /*
+    * Method: addManualPatron
+    * Parameters: none
+    * Return: void
+    * Purpose: Prompt user for all necessary patron information.  Create patron object and attempt to add to LMS.
+    * Prompt user with valid parameters for patron information to correct invalid information.
+     */
     public void addManualPatron(){
         System.out.print("Enter 7-digit patron ID: ");
         String patronId = scanner.nextLine();
@@ -56,8 +81,13 @@ public class MenuControl {
             System.out.println("Check for duplicate patron ID, and invalid fine amount.");
             System.out.println("ID should be 7-digits no duplicate, fine amount should not include symbols.");
         }
-
     }
+    /*
+    * Method: removePatron
+    * Parameters: none
+    * Return: void
+    * Purpose: Prompt user for patron ID, remove matching patron.
+     */
     public void removePatron(){
         System.out.print("Enter a patron ID to remove: ");
         String patronId = scanner.nextLine();
@@ -68,12 +98,26 @@ public class MenuControl {
             System.out.println("Patron could not be found.");
         }
     }
+    /*
+    * Method: importPatron
+    * Parameters: none
+    * Return: void
+    * Purpose: Prompt user for full file path and import patrons from file.  Display amount of patrons imported.
+    * Text files in the same file path do not need full file path.
+     */
     public void importPatron(){
         System.out.println("Enter file path: ");
         String filePath = scanner.nextLine();
         int importCount = fileImport.importPatron(filePath, helper);
         System.out.println(importCount + " Patrons were imported.");
     }
+    /*
+    * Method: handleUserChoice
+    * Parameters: int choice
+    * Return: void
+    * Purpose: Calls proper action based on Librarians choice.  Librarian can use methods such as
+    * importPatron, addManualPatron, removePatron, display current patrons, or exit program.
+     */
     public void handleUserChoice(int choice){
         if (choice == 1){
             importPatron();
